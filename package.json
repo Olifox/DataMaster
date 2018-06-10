@@ -1,0 +1,13 @@
+{
+  "name": "data-master",
+  "version": "0.0.0",
+  "description": "DataMaster",
+  "main": "server.js",
+  "author": {
+    "name": "Admin"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongodb": "^3.0.10"
+  }
+}

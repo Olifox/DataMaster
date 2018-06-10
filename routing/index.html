@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<html>
+<head>
+    <script type="text/javascript" src="/codebase/webix.js"></script>
+    <link rel="stylesheet" type="text/css" href="/codebase/webix.css">
+</head>
+<body>
+    <script>
+        webix.ready(function () {
+
+            var grid = {
+                id: "grid",
+                url: "/data",
+                view: "datatable", select: "row",
+                columns: [
+                    { id: "name", header: "Name", editor: "text", fillspace: 1 },
+                    { id: "year", editor: "text" },
+                    { id: "status", editor: "select", options: ["", "Active", "Closed"] },
+                ],
+                editable: true, editaction: "dblclick"
+            };
+
+            function add_row() {
+                $$("grid").add({ name: "New item" });
+            }
+            function delete_row() {
+                $$("grid").remove($$("grid").getSelectedId(true));
+            }
+
+            webix.ui({
+                rows: [
+                    {
+                        view: "toolbar", elements: [
+                            { view: "button", value: "Add row", click: add_row },
+                            { view: "button", value: "Delete row", click: delete_row },
+                            { gravity: 2 }
+                        ]
+                    },
+                    grid
+                ]
+            });
+
+        })
+    </script>
+</body>
+</html>

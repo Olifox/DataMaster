@@ -1,0 +1,150 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>DataMaster</Name>
+    <RootNamespace>DataMaster</RootNamespace>
+    <EnableTypeScript>true</EnableTypeScript>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>74cacc88-dbce-49e1-8ff9-8eb9ea9d4d81</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>server.js</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <NodejsPort>1337</NodejsPort>
+    <StartWebBrowser>true</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="routing\codebase\i18n\be.js" />
+    <Compile Include="routing\codebase\i18n\de.js" />
+    <Compile Include="routing\codebase\i18n\en.js" />
+    <Compile Include="routing\codebase\i18n\es.js" />
+    <Compile Include="routing\codebase\i18n\fr.js" />
+    <Compile Include="routing\codebase\i18n\it.js" />
+    <Compile Include="routing\codebase\i18n\ja.js" />
+    <Compile Include="routing\codebase\i18n\pt.js" />
+    <Compile Include="routing\codebase\i18n\ru.js" />
+    <Compile Include="routing\codebase\i18n\zh.js" />
+    <Compile Include="routing\codebase\legacy\excanvas\excanvas.js" />
+    <Compile Include="routing\codebase\legacy\swfobject.js" />
+    <Compile Include="routing\codebase\webix.js" />
+    <Compile Include="routing\codebase\webix_debug.js" />
+    <Compile Include="routing\index.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="server.js" />
+    <Content Include="routing\codebase\fonts\font-license.txt" />
+    <Content Include="routing\codebase\fonts\fontawesome-webfont.eot" />
+    <Content Include="routing\codebase\fonts\fontawesome-webfont.svg" />
+    <Content Include="routing\codebase\fonts\fontawesome-webfont.ttf" />
+    <Content Include="routing\codebase\fonts\fontawesome-webfont.woff" />
+    <Content Include="routing\codebase\fonts\fontawesome-webfont.woff2" />
+    <Content Include="routing\codebase\fonts\PTS-bold.woff" />
+    <Content Include="routing\codebase\fonts\PTS-webfont.woff" />
+    <Content Include="routing\codebase\legacy\excanvas\AUTHORS.txt" />
+    <Content Include="routing\codebase\legacy\excanvas\COPYING.txt" />
+    <Content Include="routing\codebase\legacy\excanvas\README.txt" />
+    <Content Include="routing\codebase\legacy\uploader.swf" />
+    <Content Include="routing\codebase\skins\air.css" />
+    <Content Include="routing\codebase\skins\aircompact.css" />
+    <Content Include="routing\codebase\skins\clouds.css" />
+    <Content Include="routing\codebase\skins\compact.css" />
+    <Content Include="routing\codebase\skins\contrast.css" />
+    <Content Include="routing\codebase\skins\debug\air.css" />
+    <Content Include="routing\codebase\skins\debug\aircompact.css" />
+    <Content Include="routing\codebase\skins\debug\clouds.css" />
+    <Content Include="routing\codebase\skins\debug\compact.css" />
+    <Content Include="routing\codebase\skins\debug\contrast.css" />
+    <Content Include="routing\codebase\skins\debug\flat.css" />
+    <Content Include="routing\codebase\skins\debug\glamour.css" />
+    <Content Include="routing\codebase\skins\debug\light.css" />
+    <Content Include="routing\codebase\skins\debug\metro.css" />
+    <Content Include="routing\codebase\skins\debug\terrace.css" />
+    <Content Include="routing\codebase\skins\debug\touch.css" />
+    <Content Include="routing\codebase\skins\debug\web.css" />
+    <Content Include="routing\codebase\skins\flat.css" />
+    <Content Include="routing\codebase\skins\glamour.css" />
+    <Content Include="routing\codebase\skins\light.css" />
+    <Content Include="routing\codebase\skins\metro.css" />
+    <Content Include="routing\codebase\skins\terrace.css" />
+    <Content Include="routing\codebase\skins\touch.css" />
+    <Content Include="routing\codebase\skins\web.css" />
+    <Content Include="routing\codebase\webix.css" />
+    <Content Include="routing\codebase\webix.js.map" />
+    <Content Include="routing\index.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="routing\codebase\" />
+    <Folder Include="routing\codebase\fonts\" />
+    <Folder Include="routing\codebase\i18n\" />
+    <Folder Include="routing\codebase\legacy\" />
+    <Folder Include="routing\codebase\legacy\excanvas\" />
+    <Folder Include="routing\codebase\skins\" />
+    <Folder Include="routing\codebase\skins\debug\" />
+    <Folder Include="routing\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="routing\codebase\webix.d.ts" />
+  </ItemGroup>
+  <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
