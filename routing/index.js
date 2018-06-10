@@ -38,18 +38,39 @@ router.get(/\.jpg$/, function (req, res) {
 
 MongoClient.connect(url, (err, database) => {
     if (err) return console.log(err)
+    var db = database.db('datamaster');
 
     router.get('/data', function (req, res) {
-        var db = database.db('datamaster');
-        var details = {
-            '_id': new ObjectID('5b1d1b63eba3073740e9f072')
-        };
-        db.collection('data').findOne(details, (err, item) => {
-            if (err) {
-                res.send({ 'error': 'An error has occurred' });
-            } else {
-                res.send(item);
+        db.collection('data').find().toArray(function (err, data) {
+            for (var i = 0; i < data.length; i++) {
+                data[i].id = data[i]._id;
+                delete data[i]._id;
             }
+
+            res.send(data);
+        });
+    });
+
+    router.post('/data', function (req, res) {
+        db.collection('data').insert(req.body, function (err, record) {
+            if (err) return res.send({ status: "error" });
+            res.send({ newid: req.body._id });
+        });
+    });
+
+    router.put('/data/:id', function (req, res) {
+        var details = { '_id': new ObjectID(req.params.id) };
+        db.collection('data').update(details, req.body, function (err, result) {
+            if (err) return res.send({ status: "error" });
+            res.send({});
+        });
+    });
+
+    router.delete('/data/:id', function (req, res) {
+        var details = { '_id': new ObjectID(req.params.id) };
+        db.collection('data').remove(details, function (err) {
+            if (err) return res.send({ status: "error" });
+            res.send({});
         });
     });
 });
