@@ -31,7 +31,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="internalization.js" />
+    <Compile Include="routing\internalization.js" />
     <Compile Include="routing\codebase\i18n\be.js" />
     <Compile Include="routing\codebase\i18n\de.js" />
     <Compile Include="routing\codebase\i18n\en.js" />
@@ -95,6 +95,7 @@
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="routing\css\" />
     <Folder Include="routing\codebase\" />
     <Folder Include="routing\codebase\fonts\" />
     <Folder Include="routing\codebase\i18n\" />

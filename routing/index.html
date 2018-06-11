@@ -1,17 +1,4 @@
-﻿<!--<!DOCTYPE HTML>
-<html>
-<head>
-    <link rel="stylesheet" href="codebase/skins/contrast.css" type="text/css">
-    <link rel="stylesheet" href="css/main.css" type="text/css">
-    <script src="codebase/webix.js" type="text/javascript"></script>
-    <script src="codebase/i18n/en.js" type="text/javascript"></script>
-    <script src="codebase/i18n/ru.js" type="text/javascript"></script>
-</head>
-<body>
-    <script src="bundle.js" type="text/javascript"></script>
-</body>
-</html>-->
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
     <script type="text/javascript" src="/codebase/webix.js"></script>
@@ -26,10 +13,16 @@
                 url: "/data",
                 save:"rest->/data",
                 view: "datatable", select: "row",
+                multiselect: true,
                 columns: [
-                    { id: "name", header: "Name", editor: "text", fillspace: 1 },
-                    { id: "year", editor: "text" },
-                    { id: "status", editor: "select", options: ["", "Active", "Closed"] },
+                    { id: "title", header: "Title", editor: "text", fillspace: 2 },
+                    { id: "content", editor: "popup", fillspace: 8 },
+                    { id: "place", editor: "text", fillspace: 2 },
+                    {
+                        id: "date", editor: "date", map: "(date)#date#",
+                        format: webix.Date.dateToStr("%d.%m.%Y"), fillspace: 2
+                    },
+                    { id: "priority", editor: "select", options: [1, 2, 3, 4, 5], fillspace: 1 },
                 ],
                 editable: true, editaction: "dblclick"
             };
@@ -40,17 +33,55 @@
             function delete_row() {
                 $$("grid").remove($$("grid").getSelectedId(true));
             }
+            function clearSelection() {
+                $$("grid").unselectAll();
+            }
+
+            function Button(id, value, width, onClickFunction) {
+                this.view = "button";
+                this.id = id;
+                this.value = value;
+                this.width = width;
+                this.click = onClickFunction;
+            }
 
             webix.ui({
                 rows: [
                     {
-                        view: "toolbar", elements: [
-                            { view: "button", value: "Add row", click: add_row },
-                            { view: "button", value: "Delete row", click: delete_row },
-                            { gravity: 2 }
+                        cols: [
+                            { template: "Data master" },
+                            {
+                                view: "button",
+                                value: "Reset filteres",
+                                width: 150
+                            },
+                            {
+                                view: "combo",
+                                label: 'Change locale:',
+                                labelWidth: 130,
+                                width: 230,
+                                align: "right",
+                                value: "en-US",
+                                options: [
+                                    "ru-RU",
+                                    "en-US"
+                                ]
+                            }
                         ]
                     },
-                    grid
+                    grid,
+                    {
+                        view: "toolbar",
+                        id: "buttonContainer",
+                        height: 50,
+                        elements: [
+                            new Button("addRow", "Add row", 150, add_row),
+                            new Button("clearSelection", "Clear selection", 150, clearSelection),
+                            new Button("deleteRow", "Delete row", 150, delete_row),
+                            //new Button("reservedButton", "Reserved button", "form", 150, reservedButton),
+                            {}
+                        ]
+                    }
                 ]
             });
 
