@@ -2,11 +2,15 @@
 <html>
 <head>
     <script type="text/javascript" src="/codebase/webix.js"></script>
-    <link rel="stylesheet" type="text/css" href="/codebase/webix.css">
+    <script type="text/javascript" src="internalization.js"></script>
+    <link rel="stylesheet" href="codebase/skins/contrast.css" type="text/css">
 </head>
 <body>
     <script>
         webix.ready(function () {
+            var defaultLocale = "en-US";
+
+            var localizator = translations[defaultLocale];
 
             var grid = {
                 id: "grid",
@@ -16,13 +20,13 @@
                 multiselect: true,
                 columns: [
                     { id: "title", header: "Title", editor: "text", fillspace: 2 },
-                    { id: "content", editor: "popup", fillspace: 8 },
-                    { id: "place", editor: "text", fillspace: 2 },
+                    { id: "content", header: "Content", editor: "popup", fillspace: 8 },
+                    { id: "place", header: "Place", editor: "text", fillspace: 2 },
                     {
-                        id: "date", editor: "date", map: "(date)#date#",
+                        id: "date", header: "Date", editor: "date", map: "(date)#date#",
                         format: webix.Date.dateToStr("%d.%m.%Y"), fillspace: 2
                     },
-                    { id: "priority", editor: "select", options: [1, 2, 3, 4, 5], fillspace: 1 },
+                    { id: "priority", header: "Priority", editor: "select", options: [1, 2, 3, 4, 5], fillspace: 1 },
                 ],
                 editable: true, editaction: "dblclick"
             };
@@ -30,11 +34,17 @@
             function add_row() {
                 $$("grid").add({ name: "New item" });
             }
+
             function delete_row() {
                 $$("grid").remove($$("grid").getSelectedId(true));
             }
+
             function clearSelection() {
                 $$("grid").unselectAll();
+            }
+
+            function resetFilters() {
+                //TODO
             }
 
             function Button(id, value, width, onClickFunction) {
@@ -49,24 +59,35 @@
                 rows: [
                     {
                         cols: [
-                            { template: "Data master" },
                             {
-                                view: "button",
-                                value: "Reset filteres",
-                                width: 150
+                                id: "headerContainer",
+                                template: "Data master",
+                                type: "header"
                             },
                             {
-                                view: "combo",
-                                label: 'Change locale:',
-                                labelWidth: 130,
-                                width: 230,
-                                align: "right",
-                                value: "en-US",
-                                options: [
-                                    "ru-RU",
-                                    "en-US"
+                                view: "toolbar",
+                                elements: [
+                                    new Button("resetFiltersContainer", "Reset filters", 150, resetFilters),
+                                    {
+                                        view: "combo",
+                                        label: 'Change locale:',
+                                        id: "changeLocale",
+                                        labelWidth: 130,
+                                        width: 230,
+                                        align: "right",
+                                        value: "en-US",
+                                        options: [
+                                            "ru-RU",
+                                            "en-US"
+                                        ],
+                                        on: {
+                                            "onChange": function (newv, oldv) {
+                                                changeLocale(newv);
+                                            }
+                                        }
+                                    }
                                 ]
-                            }
+                            }                           
                         ]
                     },
                     grid,
@@ -78,7 +99,6 @@
                             new Button("addRow", "Add row", 150, add_row),
                             new Button("clearSelection", "Clear selection", 150, clearSelection),
                             new Button("deleteRow", "Delete row", 150, delete_row),
-                            //new Button("reservedButton", "Reserved button", "form", 150, reservedButton),
                             {}
                         ]
                     }
